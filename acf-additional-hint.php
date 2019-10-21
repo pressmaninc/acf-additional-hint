@@ -35,7 +35,7 @@ class ACF_Additional_Hint {
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
 			'label' => __('Add text for hint'),
-			'instructions' => 'Please input the texts to help users that you want to display for this field.',
+			'instructions' => 'Please input the texts to help users that you want to display for this field.(You can use HTML tags too)',
 			'name' => 'hint_text',
 			'type' => 'textarea',
 			'ui' => 1,
@@ -46,22 +46,20 @@ class ACF_Additional_Hint {
 		$choices = array(
 			'click_toggle' => 'Toggle display of the message by button.',
 			'show_hover' => 'Show the message in tooltip when you mouse over the icon.',
-			'default' => 'Always show the message.',
 		);
 
 		acf_render_field_setting( $field, array(
 			'label' => __('Presentation of your Help text'),
-			'instructions' => 'Please select the way to display your Help message.',
+			'instructions' => 'Please select the way to display your message.',
 			'name' => 'hint_toggler',
 			'type' => 'radio',
 			'choices' => $choices,
-			'default_value' => 'default',
 			'ui' => 2,
 		), true );
 	}
 
 	public function hint_plugin_scripts() {
-		// register style
+		// register styles
 		wp_register_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, '1.0.0' );
 		wp_enqueue_style( 'additional-hint-plugin-style' );
 
@@ -92,42 +90,28 @@ class ACF_Additional_Hint {
 			$this->hint_toggler_show_hover( $field );
 			return;
 		}
-	
-		// in case of default
-		if ( $field['hint_toggler'] == 'default' ) {
-			$this->hint_toggler_default( $field );
-		}
-	
+
 		return;
 	
 	}
 
-	public function hint_toggler_click_toggle( $field ) {
-		echo '<button class="hint-btn button-primary">Show hint</button>';
+	private function hint_toggler_click_toggle( $field ) {
+		echo '<button class="hint-btn button-primary">HELP</button>';
 
 		if ( preg_match( '/<("[^"]*"|[^]*|[^">])*>/', $field['hint_text'] ) ) {
-			echo '<div class="hint-text" style="display:none">' .$field['hint_text']. '</div>';
+			echo '<div class="hint-text click-toggle-hint-text" style="display:none">' .$field['hint_text']. '</div>';
 			return;
 		}
 
 		echo '<p class="hint-text" style="display:none">Hint: ' .$field['hint_text']. '</p>';
 	}
 
-	public function hint_toggler_show_hover( $field ) {
+	private function hint_toggler_show_hover( $field ) {
 		echo 
 		'<div class="tooltip1">
-			<span class="hint-icon">Hint</span>
+			<span class="hint-icon dashicons dashicons-editor-help"></span>
 			<div class="description1">Hint: ' .$field['hint_text']. '</div>
 		</div>';
-	}
-
-	public function hint_toggler_default( $field ) {
-		if ( preg_match( '/<("[^"]*"|[^]*|[^">])*>/', $field['hint_text'] ) ) {
-			echo $field['hint_text'];
-			return;
-		}
-
-		echo '<p class="hint-text">Hint: ' .$field['hint_text']. '</p>';
 	}
 }
 

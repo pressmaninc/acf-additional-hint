@@ -1,20 +1,19 @@
+.hint-btn {
+    margin-bottom: 10px!important;
+    /* position: absolute; */
+    /* top: 0;
+    right: 0; */
+}
+
 .hint-icon {
-    background: #0073aa;
-    color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 8px;
 }
 
 .tooltip1 {
     position: relative;
     cursor: pointer;
     display: inline-block;
-}
-
-.tooltip1 .hint-icon {
     margin:0;
     padding:0;
 }
@@ -47,4 +46,24 @@
     display: inline-block;
     top: 0px;
     left: 80px;
+}
+
+.hint-text,
+.hint-text * {
+    margin: 0.6em 0;
+}
+
+.acf-field {
+    position: relative;
+}
+
+.click-toggle-hint-text {
+    background: #62bfe4;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+}
+
+.dashicons-editor-help:before {
+    font-size: 23px;
 }

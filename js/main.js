@@ -1,14 +1,14 @@
-$(function() {
+jQuery(function ($) {
+    $hintIcon = $('.hint-icon');
+    $hintIcon.position = "absolute";
+    $hintIcon.top = "0px";
+
     $('.hint-btn').on('click', function() {
         let $hintText = $(this).parent().find('.hint-text');
-        $hintText.fadeToggle();
+        var $acfField = $(this).parents('.acf-field');
+        // $acfField.append($hintText);
 
-        $(this).toggleClass('shown');
+        $hintText.slideToggle();
 
-        if ($('.hint-btn').hasClass('shown')) {
-            $(this).text('Unshow hint');
-        } else {
-            $(this).text('Show hint');
-        }
     });
 });
