@@ -1,13 +1,21 @@
+.acf-input {
+    position: static!important;
+}
+
 .hint-btn {
     margin-bottom: 10px!important;
-    /* position: absolute; */
-    /* top: 0;
-    right: 0; */
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .hint-icon {
     cursor: pointer;
     display: inline-block;
+    /* 追記部分 */
+    /* position: absolute;
+    top: 0;
+    right: 0; */
 }
 
 .tooltip1 {
