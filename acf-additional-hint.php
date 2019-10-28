@@ -11,6 +11,10 @@ License: GPLv2 only
 License URI: 
 */
 
+if ( ! defined('ABSPATH') ) {
+	exit;
+}
+
 class ACF_Additional_Hint {
 	private static $instance;
 
@@ -96,19 +100,13 @@ class ACF_Additional_Hint {
 	}
 
 	private function hint_toggler_click_toggle( $field ) {
-		echo '<button class="hint-btn button-primary">HELP</button>';
-
-		if ( preg_match( '/<("[^"]*"|[^]*|[^">])*>/', $field['hint_text'] ) ) {
-			echo '<div class="hint-text click-toggle-hint-text" style="display:none">' .$field['hint_text']. '</div>';
-			return;
-		}
-
-		echo '<p class="hint-text" style="display:none">Hint: ' .$field['hint_text']. '</p>';
+		echo '<button class="hint-btn">HELP</button>';
+		echo '<div class="hint-text click-toggle-hint-text" style="display: none;">' .$field['hint_text']. '</div>';
 	}
 
 	private function hint_toggler_show_hover( $field ) {
 		echo 
-		'<div class="tooltip1">
+		'<div class="tooltip1" data-id="' .$field['id']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
 			<div class="description1">Hint: ' .$field['hint_text']. '</div>
 		</div>';
