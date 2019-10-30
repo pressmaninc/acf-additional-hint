@@ -1,13 +1,14 @@
-.acf-input {
+/* .acf-input {
     position: static!important;
-}
+} */
 
 .hint-btn {
     cursor: pointer;
-    display: inline-block;
-    position: absolute;
+    display: block;
+    float: right;
+    /* position: absolute;
     top: 15px;
-    right: 12px;
+    right: 12px; */
     padding: 0.3em 1em;
     color: #61a9d0;
     border: solid 2px #61a9d0;

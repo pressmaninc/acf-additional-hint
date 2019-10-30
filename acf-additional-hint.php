@@ -16,6 +16,9 @@ if ( ! defined('ABSPATH') ) {
 }
 
 class ACF_Additional_Hint {
+	// post_object制御用
+	public $field_key_counter = [];
+
 	private static $instance;
 
 	public static function get_instance() {
@@ -100,16 +103,29 @@ class ACF_Additional_Hint {
 	}
 
 	private function hint_toggler_click_toggle( $field ) {
-		echo '<button class="hint-btn">HELP</button>';
+		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
+			return;
+		}
+
+		echo '<button class="hint-btn" data-id="' .$field['id']. '">HELP</button>';
 		echo '<div class="hint-text click-toggle-hint-text" style="display: none;">' .$field['hint_text']. '</div>';
+
+		$this->field_key_counter[ $field['key'] ] = true;
 	}
 
 	private function hint_toggler_show_hover( $field ) {
+		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
+			return;
+		}
+
 		echo 
 		'<div class="tooltip1" data-id="' .$field['id']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
 			<div class="description1">Hint: ' .$field['hint_text']. '</div>
 		</div>';
+
+		// これがフラグになっている(一回通ったら$this->field_key_counter[ $field['key'] ]をtrueにしてissetが2回目以降falseになるようにする)
+		$this->field_key_counter[ $field['key'] ] = true;
 	}
 }
 
