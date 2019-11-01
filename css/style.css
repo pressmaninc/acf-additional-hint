@@ -1,20 +1,25 @@
-/* .acf-input {
-    position: static!important;
-} */
+/* ACF本体のCSS */
+.acf-fields.-left > .acf-field > .acf-input {
+    display: flex;
+    flex-direction: column;
+}
 
 .hint-btn {
     cursor: pointer;
     display: block;
     float: right;
-    /* position: absolute;
-    top: 15px;
-    right: 12px; */
     padding: 0.3em 1em;
     color: #61a9d0;
     border: solid 2px #61a9d0;
     border-radius: 3px;
     transition: .4s;
     margin-bottom: 10px;
+}
+
+.acf-label label:after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .hint-btn:hover {
@@ -93,4 +98,5 @@
     padding: 5px;
     background: #bbe7f5;
     margin: 20px auto 10px;
+    width: 100%;
 }

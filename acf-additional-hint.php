@@ -108,7 +108,7 @@ class ACF_Additional_Hint {
 		}
 
 		echo '<button class="hint-btn" data-id="' .$field['id']. '">HELP</button>';
-		echo '<div class="hint-text click-toggle-hint-text" style="display: none;">' .$field['hint_text']. '</div>';
+		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
 		$this->field_key_counter[ $field['key'] ] = true;
 	}

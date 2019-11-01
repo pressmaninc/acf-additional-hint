@@ -27,26 +27,25 @@ jQuery(function ($) {
     for (var i = 0; i < btnLabel.length; i++) {
         var btn = $('.hint-btn[data-id="' + btnId[i] + '"]');
         // .acf-field-repeater(繰り返しフィールド)の子要素の時だけ処理を抜ける(btn.appendToをさせない)
-        if ( btn.parents('.acf-field-repeater').length != 0 ) {
+        if ( btn.parents('.acf-field-repeater').length ) {
+            // .acf-field-repeater内のボタン用処理
+            btn.wrap('<div class="button-wrapper"></div>');
             continue;
         }
         btn.appendTo($('label[for="' + btnId[i] + '"]'));
     }
 
+    // $(document).on('click', '.hint-btn', function() {
+    //     let hintText = $(this).parents('.acf-field').find('.hint-text');
+    //     hintText.slideToggle();
+    // });
+
+    // keyに一致する.hint-textをclick toggle
     $(document).on('click', '.hint-btn', function() {
-        let hintText = $(this).parents('.acf-field').find('.hint-text');
+        let hintTextParent = $(this).parents('.acf-field');
+        let key =  hintTextParent.data('key');
+        let hintText = $('.hint-text[data-key="' + key +'"]');
         hintText.slideToggle();
     });
 
-
-
-
-    // $(window).load(function() {
-    //     click event
-    //     $('.hint-btn').on('click', function() {
-    //         let hintText = $(this).parent().find('.hint-text');
-    //         hintText.toggleClass('show');
-    //         hintText.slideToggle();
-    //     });
-    // });
 });
