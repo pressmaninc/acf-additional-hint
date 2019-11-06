@@ -107,7 +107,7 @@ class ACF_Additional_Hint {
 			return;
 		}
 
-		echo '<button class="hint-btn" data-id="' .$field['id']. '">HELP</button>';
+		echo '<button class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">HELP</button>';
 		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
 		$this->field_key_counter[ $field['key'] ] = true;
@@ -119,7 +119,7 @@ class ACF_Additional_Hint {
 		}
 
 		echo 
-		'<div class="tooltip1" data-id="' .$field['id']. '">
+		'<div class="tooltip1" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
 			<div class="description1">Hint: ' .$field['hint_text']. '</div>
 		</div>';
