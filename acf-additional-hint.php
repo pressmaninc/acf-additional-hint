@@ -16,7 +16,7 @@ if ( ! defined('ABSPATH') ) {
 }
 
 class ACF_Additional_Hint {
-	// post_object制御用
+	// property to control display of post_object type fields
 	public $field_key_counter = [];
 
 	private static $instance;
@@ -41,8 +41,8 @@ class ACF_Additional_Hint {
 
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
-			'label' => __('Add text for hint'),
-			'instructions' => 'Please input the texts to help users that you want to display for this field.(You can use HTML tags too)',
+			'label' => __( 'Add text for hint' ),
+			'instructions' => 'Please input the texts to help users for this field.(You can use HTML tags too)',
 			'name' => 'hint_text',
 			'type' => 'textarea',
 			'ui' => 1,
@@ -56,7 +56,7 @@ class ACF_Additional_Hint {
 		);
 
 		acf_render_field_setting( $field, array(
-			'label' => __('Presentation of your Help text'),
+			'label' => __( 'Presentation of your help/hint text' ),
 			'instructions' => 'Please select the way to display your message.',
 			'name' => 'hint_toggler',
 			'type' => 'radio',
@@ -99,7 +99,6 @@ class ACF_Additional_Hint {
 		}
 
 		return;
-	
 	}
 
 	private function hint_toggler_click_toggle( $field ) {
@@ -124,7 +123,6 @@ class ACF_Additional_Hint {
 			<div class="description1">Hint: ' .$field['hint_text']. '</div>
 		</div>';
 
-		// これがフラグになっている(一回通ったら$this->field_key_counter[ $field['key'] ]をtrueにしてissetが2回目以降falseになるようにする)
 		$this->field_key_counter[ $field['key'] ] = true;
 	}
 }

@@ -1,10 +1,18 @@
-/* ACF本体のCSS */
+/* styles for ACF  */
 .acf-fields.-left > .acf-field > .acf-input {
     display: flex;
     flex-direction: column;
 }
 
+.acf-label label:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* styles for this plugin below */
 .hint-btn {
+    background: #fff;
     cursor: pointer;
     display: block;
     float: right;
@@ -14,12 +22,6 @@
     border-radius: 3px;
     transition: .4s;
     margin-bottom: 10px;
-}
-
-.acf-label label:after {
-    content: "";
-    display: block;
-    clear: both;
 }
 
 .hint-btn:hover {
@@ -75,23 +77,9 @@
     left: 80px;
 }
 
-.acf-field {
-    position: relative;
-}
-
 .dashicons-editor-help:before {
     font-size: 23px;
 }
-
-/* css + jsでのアコーディオン実装例 */
-/* 通常時は.show-boxを非表示 */
-/* .click-toggle-hint-text {
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: 0.8s;
-} */
 
 .click-toggle-hint-text {
     border-radius: 3px;
@@ -99,4 +87,10 @@
     background: #bbe7f5;
     margin: 20px auto 10px;
     width: 100%;
+}
+
+.hint-btn.in-repeater-table {
+    padding: 0.13em 0.7em;
+    border-width: 1px;
+    margin-top: 2px;
 }
