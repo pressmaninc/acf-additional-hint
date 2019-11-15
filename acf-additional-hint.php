@@ -44,7 +44,7 @@ class ACF_Additional_Hint {
 			'label' => __( 'Add text for hint' ),
 			'instructions' => 'Please input the texts to help users for this field.(You can use HTML tags too)',
 			'name' => 'hint_text',
-			'type' => 'textarea',
+			'type' => 'text',
 			'ui' => 1,
 		), true );
 	}
@@ -77,12 +77,7 @@ class ACF_Additional_Hint {
 
 	public function render_hint_text_field( $field ) {
 		// bail early if $field['hint_text'] key exists
-		if ( ! isset( $field['hint_text'] ) ) {
-			return;
-		}
-
-		// bail early if $field['hint_text'] exists
-		if ( ! $field['hint_text'] ) {
+		if ( ! isset( $field['hint_text'] ) || ! $field['hint_text'] ) {
 			return;
 		}
 
@@ -106,7 +101,7 @@ class ACF_Additional_Hint {
 			return;
 		}
 
-		echo '<button class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">HELP</button>';
+		echo '<span class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">HELP</span>';
 		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
 		$this->field_key_counter[ $field['key'] ] = true;
