@@ -16,9 +16,16 @@ if ( ! defined('ABSPATH') ) {
 }
 
 class ACF_Additional_Hint {
-	// property to control display of post_object type fields
+	/**
+	 * @var Array
+	 * counter to control display of post_object type fields
+	 */
 	public $field_key_counter = [];
 
+	/**
+	 * @var
+	 * create singleton instance
+	 */
 	private static $instance;
 
 	public static function get_instance() {
@@ -35,18 +42,8 @@ class ACF_Additional_Hint {
 	}
 
 	public function render_hint_fields( $field ) {
-		$this->hint_text_field( $field );
 		$this->hint_toggler_choice_field( $field );
-	}
-
-	private function hint_text_field( $field ) {
-		acf_render_field_setting( $field, array(
-			'label' => __( 'Add text for hint' ),
-			'instructions' => 'Please input the texts to help users for this field.(You can use HTML tags too)',
-			'name' => 'hint_text',
-			'type' => 'text',
-			'ui' => 1,
-		), true );
+		$this->hint_text_field( $field );
 	}
 
 	private function hint_toggler_choice_field( $field ) {
@@ -61,6 +58,16 @@ class ACF_Additional_Hint {
 			'name' => 'hint_toggler',
 			'type' => 'radio',
 			'choices' => $choices,
+			'ui' => 1,
+		), true );
+	}
+
+	private function hint_text_field( $field ) {
+		acf_render_field_setting( $field, array(
+			'label' => __( 'Add text for hint' ),
+			'instructions' => 'Please input the texts to help users for this field.(You can use HTML tags too)',
+			'name' => 'hint_text',
+			'type' => 'textarea',
 			'ui' => 2,
 		), true );
 	}
@@ -101,7 +108,13 @@ class ACF_Additional_Hint {
 			return;
 		}
 
-		echo '<span class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">HELP</span>';
+		// echo '<span class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">HELP</span>';
+		echo
+		'<div class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
+			<input type="checkbox" id="'.$field['key'].'">
+			<label for="'.$field['key'].'"><span></span></label>
+			<div class="swImg"></div>
+		</div>';
 		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
 		$this->field_key_counter[ $field['key'] ] = true;

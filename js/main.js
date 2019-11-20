@@ -1,25 +1,10 @@
 jQuery(function ($) {
-	// change position of hint icon & tooltip
-	var tooltipId = [];
-	var tooltipKey = [];
-	// get id and key of each tooltip
-	for ( var i = 0; i < $('.tooltip1').length; i++ ) {
-		tooltipId[i] = $('.tooltip1')[i].dataset.id;
-		tooltipKey[i] = $('.tooltip1')[i].dataset.key;
-	}
-
-	var acfField = $('.tooltip1').parents('.acf-field');
-	var label = acfField.find('.acf-label').find('label');
-
-	for ( var i = 0; i < label.length; i++ ) {
-		var idTooltip = $('.tooltip1[data-id="' + tooltipId[i] + '"]');
-		var keyTooltip = $('.tooltip1[data-key="' + tooltipKey[i] + '"]');
-		if ( keyTooltip.parents('.acf-repeater.-table').length ) {
-			keyTooltip.appendTo( $('.acf-th[data-key="' + tooltipKey[i] + '"]') );
-			continue;
-		}
-		idTooltip.appendTo( $('label[for="' + tooltipId[i] + '"]') );
-	}
+	// change position of tooltips
+	// 穴原さんのリファクタリングコード
+	$('.tooltip1').each(function() {
+		var node = $(this).parent().siblings('.acf-label').find('label');
+		$(this).appendTo( node );
+	});
 
 	// change position of hint button
 	var btnId = [];
@@ -61,7 +46,14 @@ jQuery(function ($) {
 		var hintTextParent = $(this).parents('.acf-field[data-key="' + $(this).data('key') + '"]');
 		var key =  hintTextParent.data( 'key' );
 		var hintText = $('.hint-text[data-key="' + key +'"]');
-		hintText.slideToggle();
+
+		// test
+		if ( $('.hint-btn[data-key="' + key + '"] input[type="checkbox"]').prop('checked') ) {
+			hintText.slideDown();
+		} else {
+			hintText.slideUp();
+		}
+		// hintText.slideToggle();
 	});
 
 });

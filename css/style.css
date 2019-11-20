@@ -11,7 +11,7 @@
 }
 
 /* styles for this plugin below */
-.hint-btn {
+/* .hint-btn {
     background: #fff;
     cursor: pointer;
     display: block;
@@ -22,16 +22,16 @@
     border-radius: 3px;
     transition: .4s;
     margin-bottom: 10px;
-}
+} */
 
-.hint-btn:hover {
+/* .hint-btn:hover {
     background: #61a9d0;
     color: white;
 }
 
 .hint-btn:focus {
     outline: 0;
-}
+} */
 
 .hint-icon {
     cursor: pointer;
@@ -97,4 +97,69 @@
 /* controll repeater field */
 .acf-row:not(:first-of-type) .hint-btn {
     display: none;
+}
+
+
+/* === ボタンを表示するエリア ============================== */
+.hint-btn {
+    line-height    : 26px;                /* 1行の高さ          */
+    letter-spacing : 0;                   /* 文字間             */
+    text-align     : center;              /* 文字位置は中央     */
+    font-size      : 13px;                /* 文字サイズ         */
+    position       : relative;            /* 親要素が基点       */
+    width          : 70px;               /* ボタンの横幅       */
+    background     : #fff;                /* デフォルト背景色   */
+    float: right;
+}
+
+   /* === チェックボックス ==================================== */
+.hint-btn input[type="checkbox"] {
+    display        : none;            /* チェックボックス非表示 */
+}
+
+   /* === チェックボックスのラベル（標準） ==================== */
+.hint-btn label {
+    display        : block;               /* ボックス要素に変更 */
+    box-sizing     : border-box;          /* 枠線を含んだサイズ */
+    height         : 30px;                /* ボタンの高さ       */
+    border         : 2px solid #61a9d0;   /* 未選択タブのの枠線 */
+    border-radius  : 15px;                /* 角丸               */
+}
+
+    /* === チェックボックスのラベル（ONのとき） ================ */
+.hint-btn input[type="checkbox"]:checked +label {
+    border-color: #61a9d0;             /* 選択タブの枠線     */
+    background: #61a9d0;
+}
+
+   /* === 表示する文字（標準） ================================ */
+.hint-btn label span:after{
+    content: "OFF";       /* 表示する文字       */
+    padding: 0 0 0 28px;  /* 表示する位置       */
+    color: #61a9d0;     /* 文字色             */
+}
+
+   /* === 表示する文字（ONのとき） ============================ */
+.hint-btn  input[type="checkbox"]:checked + label span:after{
+    content        : "ON";                /* 表示する文字       */
+    padding        : 0 28px 0 0;          /* 表示する位置       */
+    color          : #fff;             /* 文字色             */
+}
+
+   /* === 丸部分のSTYLE（標準） =============================== */
+.hint-btn .swImg {
+    position       : absolute;            /* 親要素からの相対位置*/
+    width          : 22px;                /* 丸の横幅           */
+    height         : 22px;                /* 丸の高さ           */
+    background     : #61a9d0;             /* カーソルタブの背景 */
+    top            : 4px;                 /* 親要素からの位置   */
+    left           : 4px;                 /* 親要素からの位置   */
+    border-radius  : 26px;                /* 角丸               */
+    transition     : .5s;                 /* 滑らか変化         */
+}
+
+   /* === 丸部分のSTYLE（ONのとき） =========================== */
+.hint-btn input[type="checkbox"]:checked ~ .swImg {
+    transform      : translateX(40px);    /* 丸も右へ移動       */
+    background     : #fff;             /* カーソルタブの背景 */
 }
