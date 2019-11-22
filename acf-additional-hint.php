@@ -17,7 +17,7 @@ if ( ! defined('ABSPATH') ) {
 
 class ACF_Additional_Hint {
 	/**
-	 * @var Array
+	 * @var array
 	 * counter to control display of post_object type fields
 	 */
 	public $field_key_counter = [];
@@ -41,11 +41,19 @@ class ACF_Additional_Hint {
 		add_action( 'acf/render_field', [ $this, 'render_hint_text_field' ], 10, 1 );
 	}
 
+	/**
+	 * @param array $field
+	 * render fields for showing option and textarea to input message
+	 */
 	public function render_hint_fields( $field ) {
 		$this->hint_toggler_choice_field( $field );
 		$this->hint_text_field( $field );
 	}
 
+	/**
+	 * @param array $field
+	 * render field for showing option
+	 */
 	private function hint_toggler_choice_field( $field ) {
 		$choices = array(
 			'click_toggle' => 'Toggle display of the message by button.',
@@ -62,6 +70,10 @@ class ACF_Additional_Hint {
 		), true );
 	}
 
+	/**
+	 * @param array $field
+	 * render field for textarea to input message
+	 */
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
 			'label' => __( 'Add text for hint' ),
@@ -72,6 +84,7 @@ class ACF_Additional_Hint {
 		), true );
 	}
 
+	// load original stylesheet and script
 	public function hint_plugin_scripts() {
 		// register styles
 		wp_register_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, '1.0.0' );

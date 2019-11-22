@@ -1,38 +1,10 @@
 jQuery(function ($) {
-	// change position of tooltips
+	// change position of tooltips and switch button
 	// 穴原さんのリファクタリングコード
-	$('.tooltip1').each(function() {
+	$('.tooltip1, .hint-btn').each(function() {
 		var node = $(this).parent().siblings('.acf-label').find('label');
 		$(this).appendTo( node );
 	});
-
-	// change position of hint button
-	var btnId = [];
-	var btnKey = [];
-	for ( var i = 0; i < $('.hint-btn').length; i++ ) {
-		btnId[i] = $('.hint-btn')[i].dataset.id;
-		btnKey[i] = $('.hint-btn')[i].dataset.key;
-	}
-
-	var btnAcfField = $('.hint-btn').parents( '.acf-field' );
-	var btnLabel = btnAcfField.find( '.acf-label' ).find( 'label' );
-
-	for ( var i = 0; i < btnLabel.length; i++ ) {
-		var btn = $('.hint-btn[data-id="' + btnId[i] + '"]');
-		var keyBtn = $('.hint-btn[data-key="' + btnKey[i] + '"]');
-		// if btn are children of .acf-repeater.-row
-		if ( btn.parents('.acf-repeater.-row').length ) {
-			btn.wrap( '<div class="button-wrapper"></div>' );
-			continue;
-		}
-		// if keyBtn are children of .acf-repeater.-table
-		if ( keyBtn.parents( '.acf-repeater.-table' ).length ) {
-			keyBtn.addClass( 'in-repeater-table' );
-			keyBtn.appendTo( $('.acf-th[data-key="' + btnKey[i] + '"]') );
-			continue;
-		}
-		btn.appendTo( $('label[for="' + btnId[i] + '"]') );
-	}
 
 
 	$(document).on('click', '.hint-btn', function() {
