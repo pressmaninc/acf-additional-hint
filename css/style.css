@@ -4,47 +4,21 @@
     flex-direction: column;
 }
 
-.acf-label label:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
 /* styles for this plugin below */
-/* .hint-btn {
-    background: #fff;
-    cursor: pointer;
-    display: block;
-    float: right;
-    padding: 0.3em 1em;
-    color: #61a9d0;
-    border: solid 2px #61a9d0;
-    border-radius: 3px;
-    transition: .4s;
-    margin-bottom: 10px;
-} */
-
-/* .hint-btn:hover {
-    background: #61a9d0;
-    color: white;
-}
-
-.hint-btn:focus {
-    outline: 0;
-} */
-
-.hint-icon {
-    cursor: pointer;
-    display: inline-block;
-}
-
 .tooltip1 {
     position: relative;
     cursor: pointer;
     display: inline-block;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     font-weight: normal;
+}
+
+.hint-icon {
+    cursor: pointer;
+    display: inline-block;
+    color: #61a9d0;
+    vertical-align: bottom;
 }
 
 .description1 {
@@ -58,13 +32,14 @@
     background: #000;
     width: 200px;
     z-index: 10;
+    word-wrap: break-word;
 }
 
 .description1:before {
     content: "";
     position: absolute;
-    top: 0%;
-    right: 95%;
+    top: 1%;
+    right: 98%;
     border: 15px solid transparent;
     border-top: 15px solid #000;
     margin-left: -15px;
@@ -73,8 +48,8 @@
 
 .tooltip1:hover .description1 {
     display: inline-block;
-    top: 0px;
-    left: 80px;
+    top: -8px;
+    left: 33px;
 }
 
 .dashicons-editor-help:before {
@@ -83,9 +58,9 @@
 
 .click-toggle-hint-text {
     border-radius: 3px;
-    padding: 5px;
+    padding: 4px 8px;
     background: #bbe7f5;
-    margin: 20px auto 10px;
+    margin: 20px 0 10px;
     word-wrap: break-word;
 }
 
@@ -96,66 +71,74 @@
 }
 
 /* controll repeater field */
-.acf-row:not(:first-of-type) .hint-btn {
+.acf-row:not(:first-of-type) .btn-area {
     display: none;
 }
 
+.btn-area {
+    display: inline-flex;
+    float: right;
+}
+
+.btn-area.show .btn-text {
+    color: #61a9d0;
+}
 
 .hint-btn {
-    line-height: 16px; /* 1行の高さ          */
-    letter-spacing: 0; /* 文字間             */
-    text-align: center; /* 文字位置は中央     */
-    font-size: 12px; /* 文字サイズ         */
-    position: relative; /* 親要素が基点       */
-    width: 50px; /* ボタンの横幅       */
-    background: #fff; /* デフォルト背景色   */
+    line-height: 16px;
+    letter-spacing: 0;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    width: 35px;
+    background: #fff;
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 3px;
+    box-sizing: border-box;
+    height: 18px;
+    border: 1px solid #aaaaaa;
+    border-radius: 15px;
 }
 
-.hint-btn input[type="checkbox"] {
-    display: none; /* チェックボックス非表示 */
-}
+/* .hint-btn input[type="checkbox"] {
+    display: none;
+} */
 
-.hint-btn label {
-    display: block; /* ボックス要素に変更 */
-    box-sizing: border-box; /* 枠線を含んだサイズ */
-    height: 16px; /* ボタンの高さ       */
-    border: 1px solid #61a9d0;   /* 未選択タブのの枠線 */
-    border-radius: 15px; /* 角丸               */
-}
+/* .hint-btn label {
+    display: block;
+    box-sizing: border-box;
+    height: 16px;
+    border: 1px solid #aaaaaa;
+    border-radius: 15px;
+} */
 
-.hint-btn input[type="checkbox"]:checked +label {
+/* .hint-btn input[type="checkbox"]:checked +label {
+    border-color: #61a9d0;
+    background: #61a9d0;
+} */
+
+.hint-btn.button-on {
     border-color: #61a9d0; /* 選択タブの枠線     */
     background: #61a9d0;
-}
-
-.hint-btn label span:after{
-    content: "Help"; /* 表示する文字       */
-    padding: 0 0 0 14px; /* 表示する位置       */
-    color: #61a9d0; /* 文字色             */
-    font-weight: 400;
-}
-
-.hint-btn  input[type="checkbox"]:checked + label span:after{
-    content: "Hide"; /* 表示する文字       */
-    padding: 0 17px 0 0; /* 表示する位置       */
-    color: #fff; /* 文字色             */
-    font-weight: 400;
 }
 
 .hint-btn .swImg {
     position: absolute;     /* 親要素からの相対位置*/
     width: 11px;  /* 丸の横幅    */
     height: 11px;  /* 丸の高さ    */
-    background: #61a9d0;      /* カーソルタブの背景 */
+    background: #aaaaaa;      /* カーソルタブの背景 */
     top: 3px;   /* 親要素からの位置   */
     left: 3px;   /* 親要素からの位置   */
     border-radius: 26px;  /* 角丸 */
     transition: .5s;   /* 滑らか変化  */
 }
 
-.hint-btn input[type="checkbox"]:checked ~ .swImg {
-    transform: translateX(32px);    /* 丸も右へ移動       */
+/* .hint-btn input[type="checkbox"]:checked ~ .swImg {
+    transform: translateX(18px);
+    background: #fff;
+} */
+
+.hint-btn.button-on .swImg {
+    transform: translateX(17px);    /* 丸も右へ移動       */
     background: #fff;             /* カーソルタブの背景 */
 }
