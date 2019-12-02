@@ -18,18 +18,18 @@ if ( ! defined('ABSPATH') ) {
 class ACF_Additional_Hint {
 	/**
 	 * @var array
-	 * counter to control display of post_object type fields
+	 * counter to prevent the functions from going through twice
 	 */
 	public $field_key_counter = [];
 
 	/**
-	 * @var
-	 * created singleton instance
+	 * @var null
+	 * singleton instance
 	 */
 	private static $instance;
 
 	/**
-	 * @return 
+	 * @return object $instance
 	 * create singleton instance
 	 */
 	public static function get_instance() {
@@ -59,7 +59,7 @@ class ACF_Additional_Hint {
 
 	/**
 	 * @param array $field
-	 * render field for showing option
+	 * render field for showing options
 	 */
 	private function hint_toggler_choice_field( $field ) {
 		$choices = array(
@@ -106,7 +106,7 @@ class ACF_Additional_Hint {
 
 	/**
 	 * @param array $field
-	 * render help text and icon/button depend on selected options
+	 * render help text and icon/button depend on the selected options
 	 */
 	public function render_hint_text_field( $field ) {
 		// bail early if $field['hint_text'] key exists or return if hint text is not entered
@@ -131,26 +131,15 @@ class ACF_Additional_Hint {
 
 	/**
 	 * @param array $field
-	 * render hint text and the button to toggle hint text in ACF input field
+	 * render hint text and the button to toggle the hint text in ACF input field
 	 */
 	private function hint_toggler_click_toggle( $field ) {
-		// prevent this function going through twice
+		// prevent this function from going through twice
 		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
 			return;
 		}
 
-		// previous version of button made by label + checkbox
-		// echo
-		// '<div class="btn-area">
-		// 	<span class="btn-text">HELP</span>
-		// 	<div class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
-		// 		<input type="checkbox" id="'.$field['key'].'">
-		// 		<label for="'.$field['key'].'"></label>
-		// 		<div class="swImg"></div>
-		// 	</div>
-		// </div>';
-
-		// output the button to control hint text
+		// output the button to show/hide hint text
 		echo 
 		'<div class="btn-area">
 			<span class="btn-text">HELP</span>
@@ -162,26 +151,28 @@ class ACF_Additional_Hint {
 		// output the hint text
 		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
+		// set true if this function is executed
 		$this->field_key_counter[ $field['key'] ] = true;
 	}
 
 	/**
 	 * @param array $field
-	 * render the icon and the tooltip in ACF input field
+	 * render icon and tooltip in ACF input fields
 	 */
 	private function hint_toggler_show_hover( $field ) {
-		// prevent this function going through twice
+		// prevent this function from going through twice
 		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
 			return;
 		}
 
 		// output the icon and the tooltip
 		echo 
-		'<div class="tooltip1" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
+		'<div class="acf-hint-tooltip" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
-			<div class="description1">Hint: ' .$field['hint_text']. '</div>
+			<div class="acf-hint-description">Hint: ' .$field['hint_text']. '</div>
 		</div>';
 
+		// set true if this function is executed
 		$this->field_key_counter[ $field['key'] ] = true;
 	}
 }

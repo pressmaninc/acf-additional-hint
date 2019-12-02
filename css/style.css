@@ -5,7 +5,8 @@
 }
 
 /* styles for this plugin below */
-.tooltip1 {
+/* styles for icon & tooltip */
+.acf-hint-tooltip {
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -21,7 +22,7 @@
     vertical-align: bottom;
 }
 
-.description1 {
+.acf-hint-description {
     display: none;
     position: absolute;
     padding: 10px;
@@ -35,7 +36,7 @@
     word-wrap: break-word;
 }
 
-.description1:before {
+.acf-hint-description:before {
     content: "";
     position: absolute;
     top: 1%;
@@ -46,7 +47,7 @@
     transform: rotateZ(90deg);
 }
 
-.tooltip1:hover .description1 {
+.acf-hint-tooltip:hover .acf-hint-description {
     display: inline-block;
     top: -8px;
     left: 33px;
@@ -56,18 +57,13 @@
     font-size: 23px;
 }
 
+/* styles for button & hint text */
 .click-toggle-hint-text {
     border-radius: 3px;
     padding: 4px 8px;
     background: #bbe7f5;
     margin: 20px 0 10px;
     word-wrap: break-word;
-}
-
-.hint-btn.in-repeater-table {
-    padding: 0.13em 0.7em;
-    border-width: 1px;
-    margin-top: 2px;
 }
 
 /* controll repeater field */
@@ -98,47 +94,32 @@
     height: 18px;
     border: 1px solid #aaaaaa;
     border-radius: 15px;
+    cursor: pointer;
 }
 
-/* .hint-btn input[type="checkbox"] {
-    display: none;
-} */
-
-/* .hint-btn label {
-    display: block;
-    box-sizing: border-box;
-    height: 16px;
-    border: 1px solid #aaaaaa;
-    border-radius: 15px;
-} */
-
-/* .hint-btn input[type="checkbox"]:checked +label {
+.btn-area.show .hint-btn {
     border-color: #61a9d0;
-    background: #61a9d0;
-} */
-
-.hint-btn.button-on {
-    border-color: #61a9d0; /* 選択タブの枠線     */
     background: #61a9d0;
 }
 
 .hint-btn .swImg {
-    position: absolute;     /* 親要素からの相対位置*/
-    width: 11px;  /* 丸の横幅    */
-    height: 11px;  /* 丸の高さ    */
-    background: #aaaaaa;      /* カーソルタブの背景 */
-    top: 3px;   /* 親要素からの位置   */
-    left: 3px;   /* 親要素からの位置   */
-    border-radius: 26px;  /* 角丸 */
-    transition: .5s;   /* 滑らか変化  */
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background: #aaaaaa;
+    top: 3px;
+    left: 3px;
+    border-radius: 26px;
+    transition: .5s;
 }
 
-/* .hint-btn input[type="checkbox"]:checked ~ .swImg {
-    transform: translateX(18px);
+.btn-area.show .hint-btn .swImg {
+    transform: translateX(17px);
     background: #fff;
-} */
+}
 
-.hint-btn.button-on .swImg {
-    transform: translateX(17px);    /* 丸も右へ移動       */
-    background: #fff;             /* カーソルタブの背景 */
+.acf-repeater.-table .btn-area,
+.acf-repeater.-table .acf-hint-tooltip {
+    float: none;
+    margin-bottom: 10px;
 }
