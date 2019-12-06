@@ -65,14 +65,16 @@ class ACF_Additional_Hint {
 		$choices = array(
 			'click_toggle' => 'Toggle display of the message by button.',
 			'show_hover' => 'Show the message in tooltip when you mouse over the icon.',
+			'none' => 'none',
 		);
 
 		acf_render_field_setting( $field, array(
 			'label' => __( '[Additional Hint] How to display your help/hint text' ),
-			'instructions' => 'Please select the way to display your message.',
+			'instructions' => 'Please select how to show your message.',
 			'name' => 'hint_toggler',
 			'type' => 'radio',
 			'choices' => $choices,
+			'default_value' => 'none',
 			'ui' => 1,
 		), true );
 	}
@@ -84,7 +86,7 @@ class ACF_Additional_Hint {
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
 			'label' => __( '[Additional Hint] Add text for hint' ),
-			'instructions' => 'Please input the texts that you want to display.(You can use HTML tags too)',
+			'instructions' => 'Please input the text you want to display.(You can use HTML tags too)',
 			'name' => 'hint_text',
 			'type' => 'textarea',
 			'ui' => 2,
@@ -109,19 +111,19 @@ class ACF_Additional_Hint {
 	 * render help text and icon/button depend on the selected options
 	 */
 	public function render_hint_text_field( $field ) {
-		// bail early if $field['hint_text'] key exists or return if hint text is not entered
-		if ( ! isset( $field['hint_text'] ) || ! $field['hint_text'] ) {
+		// bail early if $field['hint_text'] key exists
+		if ( ! isset( $field['hint_text'] ) ) {
 			return;
 		}
 
 		// in case of click_toggle
-		if ( $field['hint_toggler'] == 'click_toggle' ) {
+		if ( $field['hint_toggler'] === 'click_toggle' ) {
 			$this->hint_toggler_click_toggle( $field );
 			return;
 		}
 
 		// in case of show_hover
-		if ( $field['hint_toggler'] == 'show_hover' ) {
+		if ( $field['hint_toggler'] === 'show_hover' ) {
 			$this->hint_toggler_show_hover( $field );
 			return;
 		}
@@ -149,7 +151,7 @@ class ACF_Additional_Hint {
 		</div>';
 
 		// output the hint text
-		echo '<div class="hint-text click-toggle-hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
+		echo '<div class="hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
 		// set true if this function is executed
 		$this->field_key_counter[ $field['key'] ] = true;

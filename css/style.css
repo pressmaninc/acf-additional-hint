@@ -58,10 +58,10 @@
 }
 
 /* styles for button & hint text */
-.click-toggle-hint-text {
+.hint-text {
     border-radius: 3px;
     padding: 4px 8px;
-    background: #bbe7f5;
+    background: #d3eef7;
     margin: 20px 0 10px;
     word-wrap: break-word;
 }
@@ -122,4 +122,8 @@
 .acf-repeater.-table .acf-hint-tooltip {
     float: none;
     margin-bottom: 10px;
+}
+
+.acf-parent {
+    border-top: none!important;
 }
