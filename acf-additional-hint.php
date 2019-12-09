@@ -65,7 +65,7 @@ class ACF_Additional_Hint {
 		$choices = array(
 			'click_toggle' => 'Toggle display of the message by button.',
 			'show_hover' => 'Show the message in tooltip when you mouse over the icon.',
-			'none' => 'none',
+			'none' => 'None',
 		);
 
 		acf_render_field_setting( $field, array(
@@ -111,8 +111,8 @@ class ACF_Additional_Hint {
 	 * render help text and icon/button depend on the selected options
 	 */
 	public function render_hint_text_field( $field ) {
-		// bail early if $field['hint_text'] key exists
-		if ( ! isset( $field['hint_text'] ) ) {
+		// bail early if $field['hint_text'] key exists or return if no hint text is entered
+		if ( ! isset( $field['hint_text'] ) || ! $field['hint_text'] ) {
 			return;
 		}
 
@@ -171,7 +171,7 @@ class ACF_Additional_Hint {
 		echo 
 		'<div class="acf-hint-tooltip" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
-			<div class="acf-hint-description">Hint: ' .$field['hint_text']. '</div>
+			<div class="acf-hint-description">' .$field['hint_text']. '</div>
 		</div>';
 
 		// set true if this function is executed

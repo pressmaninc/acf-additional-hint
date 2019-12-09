@@ -5,9 +5,6 @@ jQuery(function ($) {
 		$(this).appendTo( node );
 	});
 
-	// remove hint text in 2nd or more repeater field
-	$('.acf-row:not(:first-of-type) .click-toggle-hint-text').remove();
-
 	// click event for hint button
 	$(document).on('click', '.hint-btn', function() {
 		// toggle class to control switch animation
@@ -18,8 +15,8 @@ jQuery(function ($) {
 		hintText.slideToggle();
 	});
 
-	// test(put two rows into one in acf setting)
-	$('td.acf-label:has(label[for$="hint_text"])').addClass('acf-parent');
-	$('td.acf-input:has([id$="hint_text"])').addClass('acf-parent');
+	// put two rows into one in acf setting page
+	$('td.acf-label:has(label[for$="hint_text"])').addClass('row-border-none');
+	$('td.acf-input:has([id$="hint_text"])').addClass('row-border-none');
 
 });

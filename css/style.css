@@ -31,7 +31,8 @@
     color: #fff;
     border-radius: 5px;
     background: #000;
-    width: 200px;
+    min-width: 100px;
+    max-width: 200px;
     z-index: 10;
     word-wrap: break-word;
 }
@@ -39,9 +40,9 @@
 .acf-hint-description:before {
     content: "";
     position: absolute;
-    top: 1%;
+    top: 3%;
     right: 98%;
-    border: 15px solid transparent;
+    border: 13px solid transparent;
     border-top: 15px solid #000;
     margin-left: -15px;
     transform: rotateZ(90deg);
@@ -124,6 +125,10 @@
     margin-bottom: 10px;
 }
 
-.acf-parent {
+.acf-repeater.-row .btn-area {
+    float: none;
+}
+
+.row-border-none {
     border-top: none!important;
 }
