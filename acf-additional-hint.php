@@ -9,38 +9,42 @@
  * Text Domain: acfadditionalhint
  * License: GPLv2 only
  * License URI: 
+ * 
+ * 
 */
 
-if ( ! defined('ABSPATH') ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Class ACF_Additional_Hint.
+ */
 class ACF_Additional_Hint {
 	/**
+	 * Counter to prevent the functions from going through twice.
 	 * @var array
-	 * counter to prevent the functions from going through twice
 	 */
 	public $field_key_counter = [];
 
 	/**
-	 * @var null
-	 * singleton instance
+	 * @var ACF_Additional_Hint
 	 */
 	private static $instance;
 
 	/**
-	 * @return object $instance
-	 * create singleton instance
+	 * Creates singleton instance.
+	 * @return $instance
 	 */
 	public static function get_instance() {
 		if ( ! isset( self::$instance ) ) {
-			self::$instance = new ACF_Additional_Hint();
+			self::$instance = new self;
 		}
 		return self::$instance;
 	}
 
 	/**
-	 * call functions at once when the instance is created
+	 * ACF_Additional_Hint constructor.
 	 */
 	public function __construct() {
 		add_action( 'acf/render_field_settings', [ $this, 'render_hint_fields' ] );
@@ -49,8 +53,8 @@ class ACF_Additional_Hint {
 	}
 
 	/**
+	 * Displays the options and the textarea to input message.
 	 * @param array $field
-	 * render fields for showing option and textarea to input message
 	 */
 	public function render_hint_fields( $field ) {
 		$this->hint_toggler_choice_field( $field );
@@ -58,72 +62,75 @@ class ACF_Additional_Hint {
 	}
 
 	/**
+	 * Displays the field to select options.
 	 * @param array $field
-	 * render field for showing options
 	 */
 	private function hint_toggler_choice_field( $field ) {
 		$choices = array(
 			'click_toggle' => 'Toggle display of the message by button.',
-			'show_hover' => 'Show the message in tooltip when you mouse over the icon.',
-			'none' => 'None',
+			'show_hover'   => 'Show the message in tooltip when you mouse over the icon.',
+			'none'         => 'None',
 		);
 
 		acf_render_field_setting( $field, array(
-			'label' => __( '[Additional Hint] How to display your help/hint text' ),
-			'instructions' => 'Please select how to show your message.',
-			'name' => 'hint_toggler',
-			'type' => 'radio',
-			'choices' => $choices,
+			'label'         => __( '[Additional Hint] How to display your help/hint text' ),
+			'instructions'  => 'Please select how to show your message.',
+			'name'          => 'hint_toggler',
+			'type'          => 'radio',
+			'choices'       => $choices,
 			'default_value' => 'none',
-			'ui' => 1,
+			'ui'            => 1,
 		), true );
 	}
 
 	/**
+	 * Displays the field to input message.
 	 * @param array $field
-	 * render field for textarea to input message
 	 */
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
-			'label' => __( '[Additional Hint] Add text for hint' ),
+			'label'        => __( '[Additional Hint] Add text for hint' ),
 			'instructions' => 'Please input the text you want to display.(You can use HTML tags too)',
-			'name' => 'hint_text',
-			'type' => 'textarea',
-			'ui' => 2,
+			'name'         => 'hint_text',
+			'type'         => 'textarea',
+			'ui'           => 2,
 		), true );
 	}
 
 	/**
-	 * load original stylesheet and script
+	 * Loads original stylesheet and script.
 	 */
 	public function hint_plugin_scripts() {
-		// register styles
-		wp_register_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, '1.0.0' );
+		// Get the version of this plugin.
+		$data = get_file_data( __FILE__, array( 'version' => 'Version' ) );
+
+		// Registers styles.
+		wp_register_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, $data['version'] );
 		wp_enqueue_style( 'additional-hint-plugin-style' );
 
-		// register scripts
-		wp_register_script( 'additional-hint-plugin-script', plugin_dir_url(__FILE__) . 'js/main.js', false, '1.0.0' );
+		// Registers scripts.
+		wp_register_script( 'additional-hint-plugin-script', plugin_dir_url(__FILE__) . 'js/main.js', false, $data['version'] );
 		wp_enqueue_script( 'additional-hint-plugin-script' );
 	}
 
 	/**
+	 * Displays the help text and the icon/button depend on the selected options.
 	 * @param array $field
-	 * render help text and icon/button depend on the selected options
 	 */
 	public function render_hint_text_field( $field ) {
-		// bail early if $field['hint_text'] key exists or return if no hint text is entered
+		// Returns if $field['hint_text'] key exists or no hint text is entered.
 		if ( ! isset( $field['hint_text'] ) || ! $field['hint_text'] ) {
 			return;
 		}
 
-		// in case of click_toggle
-		if ( $field['hint_toggler'] === 'click_toggle' ) {
+		// In case of click_toggle.
+		if ( 'click_toggle' === $field['hint_toggler'] ) {
 			$this->hint_toggler_click_toggle( $field );
 			return;
 		}
 
-		// in case of show_hover
-		if ( $field['hint_toggler'] === 'show_hover' ) {
+		// In case of show_hover.
+		if ( 'show_hover' === $field['hint_toggler'] ) {
 			$this->hint_toggler_show_hover( $field );
 			return;
 		}
@@ -132,52 +139,52 @@ class ACF_Additional_Hint {
 	}
 
 	/**
+	 * Displays the hint text and the button in ACF input field.
 	 * @param array $field
-	 * render hint text and the button to toggle the hint text in ACF input field
 	 */
 	private function hint_toggler_click_toggle( $field ) {
-		// prevent this function from going through twice
+		// Prevents this function from going through twice.
 		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
 			return;
 		}
 
-		// output the button to show/hide hint text
+		// Outputs the button to show and hide hint text.
 		echo 
 		'<div class="btn-area">
 			<span class="btn-text">HELP</span>
 			<div class="hint-btn" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
-				<div class="swImg"></div>
+				<div class="switch-circle"></div>
 			</div>
 		</div>';
 
-		// output the hint text
+		// Outputs the hint text.
 		echo '<div class="hint-text" data-key="' .$field['key']. '" style="display: none;">' .$field['hint_text']. '</div>';
 
-		// set true if this function is executed
+		// Sets true if this function is executed.
 		$this->field_key_counter[ $field['key'] ] = true;
 	}
 
 	/**
+	 * Displays icon and tooltip in ACF input fields.
 	 * @param array $field
-	 * render icon and tooltip in ACF input fields
 	 */
 	private function hint_toggler_show_hover( $field ) {
-		// prevent this function from going through twice
+		// Prevents this function from going through twice.
 		if ( isset( $this->field_key_counter[ $field['key'] ] ) ) {
 			return;
 		}
 
-		// output the icon and the tooltip
+		// Outputs the icon and the tooltip.
 		echo 
 		'<div class="acf-hint-tooltip" data-id="' .$field['id']. '" data-key="' .$field['key']. '">
 			<span class="hint-icon dashicons dashicons-editor-help"></span>
 			<div class="acf-hint-description">' .$field['hint_text']. '</div>
 		</div>';
 
-		// set true if this function is executed
+		// Sets true if this function is executed.
 		$this->field_key_counter[ $field['key'] ] = true;
 	}
 }
 
-// excecute the method to create singleton instance
+// Executes the method to create singleton instance.
 ACF_Additional_Hint::get_instance();

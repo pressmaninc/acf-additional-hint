@@ -67,7 +67,7 @@
     word-wrap: break-word;
 }
 
-/* controll repeater field */
+/* control repeater field */
 .acf-row:not(:first-of-type) .btn-area {
     display: none;
 }
@@ -103,7 +103,7 @@
     background: #61a9d0;
 }
 
-.hint-btn .swImg {
+.hint-btn .switch-circle {
     position: absolute;
     width: 11px;
     height: 11px;
@@ -114,7 +114,7 @@
     transition: .5s;
 }
 
-.btn-area.show .hint-btn .swImg {
+.btn-area.show .hint-btn .switch-circle {
     transform: translateX(17px);
     background: #fff;
 }
