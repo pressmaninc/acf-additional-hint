@@ -102,13 +102,11 @@ class ACF_Additional_Hint {
 		// Get the version of this plugin.
 		$data = get_file_data( __FILE__, array( 'version' => 'Version' ) );
 
-		// Registers styles.
-		wp_register_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, $data['version'] );
-		wp_enqueue_style( 'additional-hint-plugin-style' );
+		// Loads styles.
+		wp_enqueue_style( 'additional-hint-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css', false, $data['version'] );
 
-		// Registers scripts.
-		wp_register_script( 'additional-hint-plugin-script', plugin_dir_url(__FILE__) . 'js/main.js', false, $data['version'] );
-		wp_enqueue_script( 'additional-hint-plugin-script' );
+		// Loads scripts.
+		wp_enqueue_script( 'additional-hint-plugin-script', plugin_dir_url(__FILE__) . 'js/main.js', false, $data['version'], true );
 	}
 
 	/**

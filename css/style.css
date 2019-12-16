@@ -28,9 +28,9 @@
     padding: 10px;
     font-size: 12px;
     line-height: 1.6em;
-    color: #fff;
+    color: #000000;
     border-radius: 5px;
-    background: #000;
+    background: #d3eef7;
     width: 200px;
     z-index: 10;
     word-wrap: break-word;
@@ -42,7 +42,7 @@
     top: 3%;
     right: 98%;
     border: 13px solid transparent;
-    border-top: 15px solid #000;
+    border-top: 15px solid #d3eef7;
     margin-left: -15px;
     transform: rotateZ(90deg);
 }
