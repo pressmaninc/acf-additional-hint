@@ -1,16 +1,14 @@
 <?php
 /**
  * Plugin Name: ACF Additional Hint
- * Plugin URI: 
+ * Plugin URI:
  * Description: A plugin to add help/hint text in ACF field.
  * Version: 1.0
- * Author: Koharu Homma
- * Author URI: 
+ * Author: PRESSMAN
+ * Author URI: https://www.pressman.ne.jp/
  * Text Domain: acfadditionalhint
- * License: GPLv2 only
- * License URI: 
- * 
- * 
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 if ( ! defined( 'ABSPATH' ) ) {

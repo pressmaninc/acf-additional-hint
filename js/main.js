@@ -1,4 +1,4 @@
-(function( $ ) {
+jQuery(function( $ ) {
 	// Change position of tooltips and switch button.
 	$( '.acf-hint-tooltip, .btn-area' ).each(function() {
 		var $node = $( this ).parent().siblings( '.acf-label' ).find( 'label' );
@@ -21,4 +21,4 @@
 	$( 'td.acf-label:has(label[for$="hint_text"])' ).addClass( 'row-border-none' );
 	$( 'td.acf-input:has([id$="hint_text"])' ).addClass( 'row-border-none' );
 
-})( jQuery );
+});

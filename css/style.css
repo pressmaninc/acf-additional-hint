@@ -31,8 +31,7 @@
     color: #fff;
     border-radius: 5px;
     background: #000;
-    min-width: 100px;
-    max-width: 200px;
+    width: 200px;
     z-index: 10;
     word-wrap: break-word;
 }
@@ -65,11 +64,6 @@
     background: #d3eef7;
     margin: 20px 0 10px;
     word-wrap: break-word;
-}
-
-/* control repeater field */
-.acf-row:not(:first-of-type) .btn-area {
-    display: none;
 }
 
 .btn-area {
@@ -119,6 +113,11 @@
     background: #fff;
 }
 
+/* control repeater field */
+.acf-row:not(:first-of-type) .btn-area {
+    display: none;
+}
+
 .acf-repeater.-table .btn-area,
 .acf-repeater.-table .acf-hint-tooltip {
     float: none;
@@ -129,6 +128,7 @@
     float: none;
 }
 
+/* style for ACF group setting page */
 .row-border-none {
     border-top: none!important;
 }
