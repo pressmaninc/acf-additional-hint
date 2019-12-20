@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-12-20T02:01:14+00:00\n"
+"PO-Revision-Date: 2019-12-20 11:14+0900\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Domain: acf-additional-hint\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ja_JP\n"
+
+#: trunk/acf-additional-hint.php:69
+msgid "Toggle display of the message by button."
+msgstr "ボタンでメッセージ表記を表示・非表示にする。"
+
+#: trunk/acf-additional-hint.php:70
+msgid "Show the message in tooltip when you mouse over the icon."
+msgstr "アイコンにカーソルを置いた際にツールチップでメッセージを表示。"
+
+#: trunk/acf-additional-hint.php:71
+msgid "None"
+msgstr "なし"
+
+#: trunk/acf-additional-hint.php:75
+msgid "[Additional Hint] How to display your help/hint text"
+msgstr "【Additional Hint】ヘルプの表示方法"
+
+#: trunk/acf-additional-hint.php:76
+msgid "Please select how to show your message."
+msgstr "ヒントメッセージの表示方法を選んでください。"
+
+#: trunk/acf-additional-hint.php:91
+msgid "[Additional Hint] Add text for hint"
+msgstr "【Additional Hint】ヒント用文章の追加"
+
+#: trunk/acf-additional-hint.php:92
+msgid "Please input the text you want to display.(You can use HTML tags too)"
+msgstr "表示したい文章を入力してください。（HTMLタグの使用も可）"

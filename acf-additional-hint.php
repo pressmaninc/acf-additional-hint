@@ -6,7 +6,8 @@
  * Version: 1.0
  * Author: PRESSMAN
  * Author URI: https://www.pressman.ne.jp/
- * Text Domain: acfadditionalhint
+ * Text Domain: acf-additional-hint
+ * Domain Path: /languages
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -45,9 +46,14 @@ class ACF_Additional_Hint {
 	 * ACF_Additional_Hint constructor.
 	 */
 	public function __construct() {
+		add_action( 'plugins_loaded', [ $this, 'myplugin_load_textdomain' ] );
 		add_action( 'acf/render_field_settings', [ $this, 'render_hint_fields' ] );
 		add_action( 'acf/input/admin_enqueue_scripts', [ $this, 'hint_plugin_scripts' ] );
 		add_action( 'acf/render_field', [ $this, 'render_hint_text_field' ], 10, 1 );
+	}
+
+	function myplugin_load_textdomain() {
+		load_plugin_textdomain( 'acf-additional-hint', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 	}
 
 	/**
@@ -65,14 +71,14 @@ class ACF_Additional_Hint {
 	 */
 	private function hint_toggler_choice_field( $field ) {
 		$choices = array(
-			'click_toggle' => 'Toggle display of the message by button.',
-			'show_hover'   => 'Show the message in tooltip when you mouse over the icon.',
-			'none'         => 'None',
+			'click_toggle' => __( 'Toggle display of the message by button.', 'acf-additional-hint' ),
+			'show_hover'   => __( 'Show the message in tooltip when you mouse over the icon.', 'acf-additional-hint' ),
+			'none'         => __( 'None', 'acf-additional-hint' ),
 		);
 
 		acf_render_field_setting( $field, array(
-			'label'         => __( '[Additional Hint] How to display your help/hint text' ),
-			'instructions'  => 'Please select how to show your message.',
+			'label'         => __( '[Additional Hint] How to display your help/hint text', 'acf-additional-hint' ),
+			'instructions'  => __( 'Please select how to show your message.', 'acf-additional-hint' ),
 			'name'          => 'hint_toggler',
 			'type'          => 'radio',
 			'choices'       => $choices,
@@ -87,8 +93,8 @@ class ACF_Additional_Hint {
 	 */
 	private function hint_text_field( $field ) {
 		acf_render_field_setting( $field, array(
-			'label'        => __( '[Additional Hint] Add text for hint' ),
-			'instructions' => 'Please input the text you want to display.(You can use HTML tags too)',
+			'label'        => __( '[Additional Hint] Add text for hint', 'acf-additional-hint' ),
+			'instructions' => __('Please input the text you want to display.(You can use HTML tags too)', 'acf-additional-hint' ),
 			'name'         => 'hint_text',
 			'type'         => 'textarea',
 			'ui'           => 2,
