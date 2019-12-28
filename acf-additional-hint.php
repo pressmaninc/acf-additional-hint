@@ -3,7 +3,7 @@
  * Plugin Name: ACF Additional Hint
  * Plugin URI:
  * Description: A plugin to add help/hint text in ACF field.
- * Version: 1.0
+ * Version: 1.2
  * Author: PRESSMAN
  * Author URI: https://www.pressman.ne.jp/
  * Text Domain: acf-additional-hint
@@ -46,14 +46,10 @@ class ACF_Additional_Hint {
 	 * ACF_Additional_Hint constructor.
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', [ $this, 'myplugin_load_textdomain' ] );
 		add_action( 'acf/render_field_settings', [ $this, 'render_hint_fields' ] );
 		add_action( 'acf/input/admin_enqueue_scripts', [ $this, 'hint_plugin_scripts' ] );
 		add_action( 'acf/render_field', [ $this, 'render_hint_text_field' ], 10, 1 );
-	}
-
-	function myplugin_load_textdomain() {
-		load_plugin_textdomain( 'acf-additional-hint', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+		load_plugin_textdomain( 'acf-additional-hint', false, basename( dirname( __FILE__ ) ).'/languages' );
 	}
 
 	/**

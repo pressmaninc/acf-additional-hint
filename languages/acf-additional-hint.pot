@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-12-20T02:01:14+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.3.0\n"
+"X-Domain: acf-additional-hint\n"
+
+#: trunk/acf-additional-hint.php:69
+msgid "Toggle display of the message by button."
+msgstr ""
+
+#: trunk/acf-additional-hint.php:70
+msgid "Show the message in tooltip when you mouse over the icon."
+msgstr ""
+
+#: trunk/acf-additional-hint.php:71
+msgid "None"
+msgstr ""
+
+#: trunk/acf-additional-hint.php:75
+msgid "[Additional Hint] How to display your help/hint text"
+msgstr ""
+
+#: trunk/acf-additional-hint.php:76
+msgid "Please select how to show your message."
+msgstr ""
+
+#: trunk/acf-additional-hint.php:91
+msgid "[Additional Hint] Add text for hint"
+msgstr ""
+
+#: trunk/acf-additional-hint.php:92
+msgid "Please input the text you want to display.(You can use HTML tags too)"
+msgstr ""
