@@ -3,7 +3,7 @@
  * Plugin Name: ACF Additional Hint
  * Plugin URI:
  * Description: A plugin to add help/hint text in ACF field.
- * Version: 1.2
+ * Version: 1.3
  * Author: PRESSMAN
  * Author URI: https://www.pressman.ne.jp/
  * Text Domain: acf-additional-hint
