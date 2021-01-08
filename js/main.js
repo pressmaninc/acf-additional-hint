@@ -21,4 +21,24 @@ jQuery(function( $ ) {
 	$( 'td.acf-label:has(label[for$="hint_text"])' ).addClass( 'row-border-none' );
 	$( 'td.acf-input:has([id$="hint_text"])' ).addClass( 'row-border-none' );
 
+	// Hover event for tooltip.
+	$( '.acf-hint-tooltip' ).hover(
+		function () {
+			var documentHeight = $( document ).height();
+			$( this ).addClass( 'hover' );
+
+			var $description = $( this ).children( '.acf-hint-description' );
+			$description.css( 'margin-top', '' );
+
+			var descPosition = $description.offset(),
+				descHeight = $description.outerHeight();
+
+			if ( documentHeight < descPosition.top + descHeight + 20 ) {
+				$description.css( 'margin-top', documentHeight - ( descPosition.top + descHeight + 20 ) );
+			}
+		},
+		function () {
+			$( this ).removeClass( 'hover' );
+		}
+	);
 });
