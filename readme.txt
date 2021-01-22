@@ -1,9 +1,9 @@
 === ACF Additional Hint ===
-Contributors: pressmaninc, hommakoharu, hiroshisekiguchi, kazunao, muraokashotaro
+Contributors: pressmaninc, hommakoharu, hiroshisekiguchi, kazunao, muraokashotaro, kengotakeuchi
 Tags: acf, advanced, custom, field, fields, hint, help
 Requires at least: 4.6
-Tested up to: 5.3
-Stable tag: 1.2
+Tested up to: 5.6
+Stable tag: 1.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -37,6 +37,9 @@ OR
 3. Examples of the icon option
 
 == Changelog ==
+
+= 1.3 =
+* Bugfix.
 
 = 1.0 =
 * First version.
