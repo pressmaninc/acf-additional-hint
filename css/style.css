@@ -37,20 +37,19 @@
 }
 
 .acf-hint-description {
-    display: none;
-    position: absolute;
+    opacity: 0;
     padding: 10px;
     font-size: 12px;
     line-height: 1.6em;
     color: #000000;
     border-radius: 5px;
     background: #d3eef7;
-    width: 200px;
     z-index: 10;
     word-wrap: break-word;
 }
 
 .acf-hint-tooltip.hover .acf-hint-description {
+    opacity: 1;
     display: inline-block;
     top: -8px;
     left: 33px;

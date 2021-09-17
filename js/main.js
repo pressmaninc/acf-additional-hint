@@ -1,6 +1,20 @@
 jQuery(function( $ ) {
+	let tooltipWidths = {};
+
 	// Change position of tooltips and switch button.
 	$( '.acf-hint-tooltip, .btn-area' ).each(function() {
+		// Get and save width now because I can't get width after setting position property.
+		const width = $( this ).children( '.acf-hint-description' ).width();
+		const dataKey = $( this ).data( 'key' );
+		if ( $( this ).hasClass( 'acf-hint-tooltip' ) ) {
+			tooltipWidths[ dataKey ] = width + 1;
+		}
+
+		// Initialize styles for loading screen.
+		$( this ).children( '.acf-hint-description' ).css( 'position', 'absolute' );
+		$( this ).children( '.acf-hint-description' ).css( 'display', 'none' );
+
+		// Change position of tooltips and switch button.
 		var $node = $( this ).parent().siblings( '.acf-label' ).find( 'label' );
 		$( this ).appendTo( $node );
 	});
@@ -30,6 +44,14 @@ jQuery(function( $ ) {
 			var $description = $( this ).children( '.acf-hint-description' );
 			$description.css( 'margin-top', '' );
 
+			// Set width of the tooltip.
+			const key = $( this ).data( 'key' );
+			const width = tooltipWidths[ key ];
+			$description.width( width );
+
+			// Display tooltip on screen.
+			$description.css( 'display', 'inline-block' );
+
 			var descPosition = $description.offset(),
 				descHeight = $description.outerHeight();
 
@@ -39,6 +61,7 @@ jQuery(function( $ ) {
 		},
 		function () {
 			$( this ).removeClass( 'hover' );
+			$( this ).children( '.acf-hint-description' ).css( 'display', 'none' );
 		}
 	);
 });
