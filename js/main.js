@@ -1,6 +1,7 @@
 jQuery(function( $ ) {
 	// Change position of tooltips and switch button.
 	$( '.acf-hint-tooltip, .btn-area' ).each(function() {
+		// Change position of tooltips and switch button.
 		var $node = $( this ).parent().siblings( '.acf-label' ).find( 'label' );
 		$( this ).appendTo( $node );
 	});
@@ -29,6 +30,23 @@ jQuery(function( $ ) {
 
 			var $description = $( this ).children( '.acf-hint-description' );
 			$description.css( 'margin-top', '' );
+
+			// Calculates distance from icon to the right side of window. (and subtract 10px from the distance for the margin.)
+			const iconOffsetLeft = $( this ).offset().left;
+			const iconWidth = $( this ).children( '.hint-icon' ).width();
+			const iconToWindowDistance = window.innerWidth - ( iconOffsetLeft + iconWidth ) - 40;
+
+			// Add inline span tag to get width of the text.
+			$('<span>', { class: 'text', html: $description.html() })
+			.appendTo( $( this ).parents( '.acf-label' ) )
+			.css( 'visibility', 'hidden' );
+			// Get width of the text.
+			const textWidth = $(this).parents( '.acf-label' ).children('.text').width();
+			$(this).parents( '.acf-label' ).children('.text').remove();
+
+			// Set width of the tooltip.
+			let width = textWidth < iconToWindowDistance ? textWidth : iconToWindowDistance;
+			$description.width( width );
 
 			var descPosition = $description.offset(),
 				descHeight = $description.outerHeight();
