@@ -1,19 +1,6 @@
 jQuery(function( $ ) {
-	let tooltipWidths = {};
-
 	// Change position of tooltips and switch button.
 	$( '.acf-hint-tooltip, .btn-area' ).each(function() {
-		// Get and save width now because I can't get width after setting position property.
-		const width = $( this ).children( '.acf-hint-description' ).width();
-		const dataKey = $( this ).data( 'key' );
-		if ( $( this ).hasClass( 'acf-hint-tooltip' ) ) {
-			tooltipWidths[ dataKey ] = width + 1;
-		}
-
-		// Initialize styles for loading screen.
-		$( this ).children( '.acf-hint-description' ).css( 'position', 'absolute' );
-		$( this ).children( '.acf-hint-description' ).css( 'display', 'none' );
-
 		// Change position of tooltips and switch button.
 		var $node = $( this ).parent().siblings( '.acf-label' ).find( 'label' );
 		$( this ).appendTo( $node );
@@ -44,13 +31,22 @@ jQuery(function( $ ) {
 			var $description = $( this ).children( '.acf-hint-description' );
 			$description.css( 'margin-top', '' );
 
-			// Set width of the tooltip.
-			const key = $( this ).data( 'key' );
-			const width = tooltipWidths[ key ];
-			$description.width( width );
+			// Calculates distance from icon to the right side of window. (and subtract 10px from the distance for the margin.)
+			const iconOffsetLeft = $( this ).offset().left;
+			const iconWidth = $( this ).children( '.hint-icon' ).width();
+			const iconToWindowDistance = window.innerWidth - ( iconOffsetLeft + iconWidth ) - 40;
 
-			// Display tooltip on screen.
-			$description.css( 'display', 'inline-block' );
+			// Add inline span tag to get width of the text.
+			$('<span>', { class: 'text', html: $description.html() })
+			.appendTo( $( this ).parents( '.acf-label' ) )
+			.css( 'visibility', 'hidden' );
+			// Get width of the text.
+			const textWidth = $(this).parents( '.acf-label' ).children('.text').width();
+			$(this).parents( '.acf-label' ).children('.text').remove();
+
+			// Set width of the tooltip.
+			let width = textWidth < iconToWindowDistance ? textWidth : iconToWindowDistance;
+			$description.width( width );
 
 			var descPosition = $description.offset(),
 				descHeight = $description.outerHeight();
@@ -61,7 +57,6 @@ jQuery(function( $ ) {
 		},
 		function () {
 			$( this ).removeClass( 'hover' );
-			$( this ).children( '.acf-hint-description' ).css( 'display', 'none' );
 		}
 	);
 });
