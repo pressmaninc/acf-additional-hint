@@ -3,7 +3,7 @@
  * Plugin Name: ACF Additional Hint
  * Plugin URI:
  * Description: A plugin to add help/hint text in ACF field.
- * Version: 1.3
+ * Version: 1.4
  * Author: PRESSMAN
  * Author URI: https://www.pressman.ne.jp/
  * Text Domain: acf-additional-hint
@@ -120,6 +120,8 @@ class ACF_Additional_Hint {
 		if ( ! isset( $field['hint_text'] ) || ! $field['hint_text'] ) {
 			return;
 		}
+
+		$field['hint_text'] = apply_filters( 'acf_additional_hint/render_hint_text_field', $field['hint_text'] );
 
 		// In case of click_toggle.
 		if ( 'click_toggle' === $field['hint_toggler'] ) {
